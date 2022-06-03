@@ -1,1 +1,112 @@
+body {
+    background-color: rgba(237, 237, 237, 0.156);
+}
 
+.header {
+    display: flex;
+    width: 100%;
+    margin: 20px;
+    font-size: 25px;
+    justify-content: center;
+    height: 40px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 10px 60px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    
+}
+
+.column {
+    padding: 20px;
+    border: 1px solid #000;
+    background-color: #fff;
+}
+
+.col1 {
+    width: 30%;
+    
+    
+}   .h3 {
+    border: 1px solid #000;
+    padding-left: 20px;
+    background-color: rgb(225, 225, 225);
+    
+    
+    
+    h3 {
+        font-size: 18px;
+        
+    }
+
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px;
+    border: 1px solid #000;
+    border-top: none;
+    gap: 40px;
+
+}
+
+.form-group {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 7px;
+
+
+    label {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    input {
+        padding: 5px;
+    }
+
+    select {
+        padding: 5px;
+    }
+
+    small {
+        font-size: 10px;
+    }
+}
+
+
+
+.col2 {
+    width: 65%;
+    background-color: aquamarine;
+}
+
+
+
+.button {
+    height: 30px;
+    width: 100px;
+    background-color: rgb(225, 225, 225);
+    border: 0.5px solid #777;
+    font-weight: 800;
+    cursor: pointer;
+
+    
+    
+}
+.button:hover {
+        background-color: black;
+        color: rgb(225, 225, 225);
+    }
