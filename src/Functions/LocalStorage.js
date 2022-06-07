@@ -1,4 +1,4 @@
-import getid from './GetId'
+import getId from './GetId'
 
 const key = 'scooters';
 
@@ -11,7 +11,7 @@ export function create(object) {
     }
 
     data = JSON.parse(data);
-    object.id = getid(key + '_id');
+    object.id = getId(key + '_id');
 
     data.push(object);
     data = JSON.stringify(data);

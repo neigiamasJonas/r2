@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import './App.scss';
 import Create from './Components/Crud/Create';
 import FaultList from './Components/Crud/List';
-import { read } from './Functions/LocalStorage';
+import { create, read } from './Functions/LocalStorage';
 
 
 
 function App() {
 
-  const [createData, setCreateData] = useState([]); 
+  const [createData, setCreateData] = useState(null); 
 
   // last update component (paskutinio localStorage update laikas), kad atsinaujintu ne po refresh
   const [lastUpdate, setLastUpdate] = useState(Date.now());
@@ -22,10 +22,12 @@ function App() {
       return;
     }
 
-    const data = localStorage.getItem('scooters');
-    setCreateData(data)
-
+    // const data = localStorage.getItem('scooters');
+    
+    create(createData)
+    
     setLastUpdate(Date.now()); 
+    
     
   }, [createData]);
 
@@ -35,25 +37,33 @@ function App() {
   // READ
 
   useEffect(() => {
+    
     setScooterList(read());
 
+    
   }, [lastUpdate]);
 
+  
+  
 
   return (
     <>
-    <body>
+    <div>
       <div className='header'><b>"Fault" paspirtuku nuoma</b></div>
       <div className='container'>
         <div className='row'>
-            <Create></Create>
+          <div className='row-col1'>
+            <Create setCreateData={setCreateData}></Create>
+          </div>
+          <div className='row-col2'>
             <div className='col2 column'>
-              <FaultList fautls={scooterList}></FaultList>
+              <FaultList faults={scooterList}></FaultList>
               
             </div>
+          </div>
         </div>
       </div>
-    </body>
+    </div>
     </>
   );
 }

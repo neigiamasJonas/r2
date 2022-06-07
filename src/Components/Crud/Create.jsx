@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { create } from '../../Functions/LocalStorage';
+// import { create } from '../../Functions/LocalStorage';
 
 
 
@@ -14,7 +14,7 @@ function rand(min, max) {
 
 
 
-function Create({ setCreateData }) {
+function Create( {setCreateData} ) {
 
 
     const [condition, setCondition] = useState("new");
@@ -22,7 +22,7 @@ function Create({ setCreateData }) {
     // data values states
     const [id, setId] = useState(1);
     const [regCode, setRegCode] = useState('A' + rand(1000000, 9999999));
-    const [km, setKm] = useState(null);
+    const [km, setKm] = useState('');
   
    
     
@@ -32,32 +32,34 @@ function Create({ setCreateData }) {
     const handleCreate = () => {
       const data = {id, regCode, condition, km};
       
-
-      //setCreateData(data);                          // uzsetinu data objekta cia, priestai tai buvo daroma App ir naudojamas propsas setCreateData
-      create(data);
+      setCreateData(data);                          // uzsetinu data objekta cia, priestai tai buvo daroma App ir naudojamas propsas setCreateData
+      // create(data);
       
   
       setRegCode('A' + rand(1000000, 9999999));
       setCondition('new');
       setKm(null);
+      setId(k => k + k.length)
 
-       const aidy = localStorage.getItem('scooters_id');
-  
+      const scooterId = localStorage.getItem('scooters_id');
 
-      if (aidy){
-      setId(Number(aidy)+1)
+      if (id === 1){
+        setId(Number(2))
       }
-    }
+      if (scooterId){
+      setId(Number(scooterId) + 2)
+      }
 
+    }
 
     // Pasiimu objekto data is localStorage
 
     useEffect(() => {
       console.log('antras')
-      const aidy = JSON.parse(localStorage.getItem('scooters_id'));
+      const scooterId = JSON.parse(localStorage.getItem('scooters_id'));
 
-      if (aidy){
-        setId(aidy +1)
+      if (scooterId){
+        setId(Number(scooterId) + 1)
       }
     }, []);
 
