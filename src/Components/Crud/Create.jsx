@@ -16,15 +16,8 @@ function rand(min, max) {
 
 function Create({ setCreateData }) {
 
+
     const [condition, setCondition] = useState("new");
-    
-
-    ///////////////////////////////////////////
-    //const [aidy, setAidy] = useState([]);
-    ///////////////////////////////////////////
-    
-
-
 
     // data values states
     const [id, setId] = useState(1);
@@ -40,56 +33,36 @@ function Create({ setCreateData }) {
       const data = {id, regCode, condition, km};
       
 
-      //setCreateData(data);
+      //setCreateData(data);                          // uzsetinu data objekta cia, priestai tai buvo daroma App ir naudojamas propsas setCreateData
       create(data);
       
-      // setId(k => k + 1);
   
       setRegCode('A' + rand(1000000, 9999999));
       setCondition('new');
       setKm(null);
 
        const aidy = localStorage.getItem('scooters_id');
-console.log('gaunu')
+  
 
       if (aidy){
       setId(Number(aidy)+1)
-  }
-
-      // setAidy(k => 1 + Number(k));
+      }
     }
 
 
-///////////////////////////////////////////
-useEffect(() => {
-  console.log('antras')
-  const aidy = JSON.parse(localStorage.getItem('scooters_id'));
+    // Pasiimu objekto data is localStorage
 
-  if (aidy){
-    setId(aidy +1)
-  }
-}, []);
-    // useEffect(() => {
-    //   console.log('pirmass')
-    //   localStorage.setItem('aidy', JSON.stringify(aidy))
+    useEffect(() => {
+      console.log('antras')
+      const aidy = JSON.parse(localStorage.getItem('scooters_id'));
 
-    
-    // }, [aidy]);
-
-    // console.log(aidy.length);
-
-  
-
-    // console.log(aidy);
-    ///////////////////////////////////////////
+      if (aidy){
+        setId(aidy +1)
+      }
+    }, []);
 
 
 
-
-
-
-
-    
 
 
     return (

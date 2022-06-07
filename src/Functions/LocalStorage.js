@@ -18,3 +18,17 @@ export function create(object) {
     localStorage.setItem(key, data);
     console.log('uzsetinta')
 }
+
+
+export function read() {
+
+    let data = localStorage.getItem(key);
+
+    if (data === null){
+        data = JSON.stringify([]);
+    }
+
+    data = JSON.parse(data);
+    return data;
+}
+
