@@ -7,7 +7,7 @@ import { create } from './Functions/LocalStorage';
 
 function App() {
 
-  const [createData, setCreateData] = useState(null); 
+  const [createData, setCreateData] = useState([]); 
 
   // CREATE data
 
@@ -16,7 +16,8 @@ function App() {
       return;
     }
 
-    create(createData);
+    const aidy = localStorage.getItem('scooters');
+    setCreateData(aidy)
 
 
     

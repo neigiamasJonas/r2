@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { create } from '../../Functions/LocalStorage';
+
 
 
 ///////////////////////////////////////////////////////////
@@ -17,6 +19,13 @@ function Create({ setCreateData }) {
     const [condition, setCondition] = useState("new");
     
 
+    ///////////////////////////////////////////
+    //const [aidy, setAidy] = useState([]);
+    ///////////////////////////////////////////
+    
+
+
+
     // data values states
     const [id, setId] = useState(1);
     const [regCode, setRegCode] = useState('A' + rand(1000000, 9999999));
@@ -29,15 +38,56 @@ function Create({ setCreateData }) {
 
     const handleCreate = () => {
       const data = {id, regCode, condition, km};
-  
-      setCreateData(data);
-      setId(k => k + 1);
+      
+
+      //setCreateData(data);
+      create(data);
+      
+      // setId(k => k + 1);
   
       setRegCode('A' + rand(1000000, 9999999));
       setCondition('new');
       setKm(null);
-    
+
+       const aidy = localStorage.getItem('scooters_id');
+console.log('gaunu')
+
+      if (aidy){
+      setId(Number(aidy)+1)
+  }
+
+      // setAidy(k => 1 + Number(k));
     }
+
+
+///////////////////////////////////////////
+useEffect(() => {
+  console.log('antras')
+  const aidy = JSON.parse(localStorage.getItem('scooters_id'));
+
+  if (aidy){
+    setId(aidy +1)
+  }
+}, []);
+    // useEffect(() => {
+    //   console.log('pirmass')
+    //   localStorage.setItem('aidy', JSON.stringify(aidy))
+
+    
+    // }, [aidy]);
+
+    // console.log(aidy.length);
+
+  
+
+    // console.log(aidy);
+    ///////////////////////////////////////////
+
+
+
+
+
+
 
     
 
@@ -50,7 +100,7 @@ function Create({ setCreateData }) {
             <div className='card-body'>
               <div className='form-group'>
                 <label>ID</label>
-                <input type="text" readOnly="readonly" value={id} onChange={e => setId(e.target.value)} />
+                <input type="text" readOnly="readonly" value={id} />
                 <small>Auto generated</small>
               </div>
               <div className='form-group'>

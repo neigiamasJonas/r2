@@ -2,6 +2,7 @@ import getid from './GetId'
 
 const key = 'scooters';
 
+
 export function create(object) {
     let data = localStorage.getItem(key);
 
@@ -15,4 +16,5 @@ export function create(object) {
     data.push(object);
     data = JSON.stringify(data);
     localStorage.setItem(key, data);
+    console.log('uzsetinta')
 }
