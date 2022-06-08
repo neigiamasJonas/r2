@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.scss';
 import Create from './Components/Crud/Create';
 import FaultList from './Components/Crud/List';
-import { create, read } from './Functions/LocalStorage';
+import { create, edit, read, remove } from './Functions/LocalStorage';
 
 
 
@@ -14,8 +14,8 @@ function App() {
   const [lastUpdate, setLastUpdate] = useState(Date.now());
 
 
-
-  // CREATE data(necreatinu, tiksliau pasiimu is local storage)
+////////////////
+  // CREATE //
 
   useEffect(() => {
     if (createData === null){
@@ -31,10 +31,10 @@ function App() {
     
   }, [createData]);
 
-
+////////////////
+  // READ //
 
   const [scooterList, setScooterList] = useState(null);
-  // READ
 
   useEffect(() => {
     
@@ -43,8 +43,40 @@ function App() {
     
   }, [lastUpdate]);
 
+ //////////////// 
+  // REMOVE //
+
+  const [deleteData, setDeleteData] = useState(null);
+
+  useEffect(() => {
+
+    if (deleteData === null) {
+      return;
+    }
+
+    remove(deleteData);
+
+    setLastUpdate(Date.now()); 
+
+  }, [deleteData])
+
+  ////////////////
+  // EDIT //
   
-  
+  const [editData, setEditData] = useState(null);
+  const [modalData, setModalData] = useState(null);
+
+  useEffect (() => {
+
+    if (editData === null) {
+      return;
+    }
+
+    edit(editData);
+
+    setLastUpdate(Date.now()); 
+
+  }, [editData]);
 
   return (
     <>
@@ -57,7 +89,7 @@ function App() {
           </div>
           <div className='row-col2'>
             <div className='col2 column'>
-              <FaultList faults={scooterList}></FaultList>
+              <FaultList faults={scooterList} dataDeletionList={setDeleteData} dataModalList={setModalData}></FaultList>
               
             </div>
           </div>

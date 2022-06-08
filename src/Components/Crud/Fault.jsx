@@ -1,5 +1,14 @@
 
-function Fault({ fault }) {
+function Fault({ fault, dataDeletion, dataEdit }) {
+
+    const handleDelete = () => {
+        dataDeletion(fault);
+    }
+
+    const handleEdit = () => {
+        dataEdit(fault)
+    }
+
 
     return (
         <>
@@ -12,8 +21,8 @@ function Fault({ fault }) {
                     <div>{fault.km}</div>
                 </div>
                 <div className="buttons">
-                    <button type="button" className="btn1">Edit</button>
-                    <button type="button" className="btn2">Delete</button>
+                    <button type="button" className="btn1" onClick={handleEdit}>Edit</button>
+                    <button type="button" className="btn2" onClick={handleDelete}>Delete</button>
                 </div>
             </div>
 

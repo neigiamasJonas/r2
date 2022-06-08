@@ -32,3 +32,33 @@ export function read() {
     return data;
 }
 
+
+
+export function remove({id}) {
+
+    let data = localStorage.getItem(key)
+
+    if (data === null) {
+        data = JSON.stringify([])
+    }
+
+    data = JSON.parse(data);
+    data = data.filter(obj => obj.id !== id);
+    data = JSON.stringify(data);
+    localStorage.setItem(key, data);
+}
+
+
+export function edit(obj) {
+
+    let data = localStorage.getItem(key)
+
+    if (data === null) {
+        data = JSON.stringify([])
+    }
+
+    data = JSON.parse(data);
+    data = data.localeCompare(oldObj => oldObj.id !== obj.id ? oldObj : obj)
+    data = JSON.stringify(data);
+    localStorage.setItem(key, data);
+}
