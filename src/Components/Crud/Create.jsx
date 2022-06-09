@@ -13,15 +13,14 @@ function Create( {setCreateData} ) {
     const [id, setId] = useState(1);
     const [regCode, setRegCode] = useState('A' + rand(1000000, 9999999));
     const [km, setKm] = useState(0);
-    // const [date, setDate] = useState('null');
+    
   
    
     
     // handleCreat po mygtuko paspaudimo istume data i paruoshta masyva
 
-
     const handleCreate = () => {
-      const data = {id, regCode, condition, km};
+      const data = {id, regCode, condition, km, busy: 0, date: ''};
       
       setCreateData(data);                          // uzsetinu data objekta cia, priestai tai buvo daroma App ir naudojamas propsas setCreateData
       // create(data);
@@ -31,6 +30,7 @@ function Create( {setCreateData} ) {
       setCondition('new');
       setKm(null);
       setId(k => k + k.length)
+      
 
       const scooterId = localStorage.getItem('scooters_id');
 
@@ -66,12 +66,12 @@ function Create( {setCreateData} ) {
             <div className='card-body'>
               <div className='form-group'>
                 <label>ID</label>
-                <input type="text" readOnly="readonly" value={id} />
+                <input type="text" readOnly value={id} />
                 <small>Auto generated</small>
               </div>
               <div className='form-group'>
                 <label>Registration Code</label>
-                <input type="text" readOnly="readonly" value={regCode} onChange={e => setRegCode(e.target.value)}/>
+                <input type="text" readOnly value={regCode} onChange={e => setRegCode(e.target.value)}/>
                 <small>Auto generated</small>
               </div>
               <div className='form-group'>

@@ -3,13 +3,27 @@ import rand from '../../Functions/RandNumber'
 
 function Edit({ modalData, setModalData, editData}) {
 
-    const [condition, setCondition] = useState("new");
-    const [id, setId] = useState(1);
-    const [regCode, setRegCode] = useState('A' + rand(1000000, 9999999));
-    const [km, setKm] = useState(0);
-    const [date, setDate] = useState('null');
+    /// today's date
+    const data = new Date().toISOString().slice(0, 10)
 
+    /// checkBox 
+    const [busy, setBusy] = useState (0)
+
+    
+    /// data constants
+    const [condition, setCondition] = useState("new");
+
+    const [id, setId] = useState(1);
+
+    const [regCode, setRegCode] = useState('A' + rand(1000000, 9999999));
+
+    const [km, setKm] = useState(0);
     const [km2, setKm2] = useState(0);
+
+    const [date, setDate] = useState('null');
+    const [newDate, setNewDate] = useState(data);
+
+    
 
 
     useEffect(() => {
@@ -23,19 +37,29 @@ function Edit({ modalData, setModalData, editData}) {
         
 
         setKm(modalData.km);
-
         setKm2(0)
-        setDate(modalData.date)
+
+        setDate(modalData.newDate)
+
+        const data2 = new Date().toISOString().slice(0, 10)
+        setNewDate(data2)
+
+        setBusy(modalData.busy)
+
+        
 
 
     }, [modalData]);
 
 
     const handleEdit = () => {
-        const data = {id, regCode, condition, km: (+(modalData.km) + +(km2)), date}
+        const data = {id, regCode, condition, km: (+(modalData.km) + +(km2)), date, newDate, busy: busy ? true : false}
 
         editData(data)
         setModalData(null);
+        
+        
+        
     }
 
     if (modalData === null) {
@@ -84,16 +108,26 @@ function Edit({ modalData, setModalData, editData}) {
                                         <label>Run today (km)</label>
                                         <input type="number" value={km2} onChange={e => setKm2(e.target.value)}></input>
                                     </div>
+                                    <div className='form-group'>
+                                        <div>
+                                            <label>Last time used</label>
+                                            <input type="date" readOnly value={date}></input>
+                                        </div>
+                                        <div>
+                                            <label>New date entry</label>
+                                            <input type="date" value={newDate} onChange={e => setNewDate(e.target.value)}></input>
+                                        </div>
+                                    </div>
+                                    <div className='form-group'>
+                                        <fieldset>
+                                        <input type="checkbox" onChange={() => setBusy(busy ? 0 : 1)} checked={busy ? 1 : 0}></input><span>Busy</span>
+                                    </fieldset>
+                        </div>
                             </div>
                             )
                             }
                         </div>
-                        <div className='form-group'>
-                            <fieldset>
-                            <input type="checkbox"></input><span>Busy</span>
-                            <input type="checkbox"></input><span>Free</span>
-                            </fieldset>
-                        </div>
+
                         <div className='modal-footer'>
                             <button type='button' onClick={() => setModalData(null)}>Close</button>
                             <button type='button' onClick={handleEdit}>Save changes</button>
