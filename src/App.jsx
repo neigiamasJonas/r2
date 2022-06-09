@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.scss';
 import Create from './Components/Crud/Create';
+import Edit from './Components/Crud/Edit';
 import FaultList from './Components/Crud/List';
 import { create, edit, read, remove } from './Functions/LocalStorage';
 
@@ -8,7 +9,9 @@ import { create, edit, read, remove } from './Functions/LocalStorage';
 
 function App() {
 
-  const [createData, setCreateData] = useState(null); 
+  const [createData, setCreateData] = useState(null);
+  const [editData, setEditData] = useState(null);
+  const [modalData, setModalData] = useState(null);
 
   // last update component (paskutinio localStorage update laikas), kad atsinaujintu ne po refresh
   const [lastUpdate, setLastUpdate] = useState(Date.now());
@@ -62,9 +65,7 @@ function App() {
 
   ////////////////
   // EDIT //
-  
-  const [editData, setEditData] = useState(null);
-  const [modalData, setModalData] = useState(null);
+
 
   useEffect (() => {
 
@@ -77,6 +78,8 @@ function App() {
     setLastUpdate(Date.now()); 
 
   }, [editData]);
+
+
 
   return (
     <>
@@ -96,6 +99,7 @@ function App() {
         </div>
       </div>
     </div>
+    <Edit editData={setEditData} modalData={modalData} setModalData={setModalData}></Edit>
     </>
   );
 }

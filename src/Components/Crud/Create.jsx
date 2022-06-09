@@ -1,16 +1,6 @@
 import { useState, useEffect } from 'react';
+import rand from '../../Functions/RandNumber'
 // import { create } from '../../Functions/LocalStorage';
-
-
-
-///////////////////////////////////////////////////////////
-function rand(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-
-  return Math.floor(Math.random() * (max - min + 1)) + min;   
-}
-////////////////////////////////////////////////////////////
 
 
 
@@ -22,7 +12,8 @@ function Create( {setCreateData} ) {
     // data values states
     const [id, setId] = useState(1);
     const [regCode, setRegCode] = useState('A' + rand(1000000, 9999999));
-    const [km, setKm] = useState('');
+    const [km, setKm] = useState(0);
+    // const [date, setDate] = useState('null');
   
    
     
@@ -90,6 +81,7 @@ function Create( {setCreateData} ) {
                   <option value="used">Used</option>
                 </select>
               </div>
+              <div>
                 {
                   condition === 'used' && (
                     <div className='form-group'>
@@ -98,6 +90,7 @@ function Create( {setCreateData} ) {
                   </div>
                   )
                 }
+              </div>
               <button className='button' onClick={handleCreate}>Create</button>
 
             </div>

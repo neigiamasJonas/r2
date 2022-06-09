@@ -58,7 +58,7 @@ export function edit(obj) {
     }
 
     data = JSON.parse(data);
-    data = data.localeCompare(oldObj => oldObj.id !== obj.id ? oldObj : obj)
+    data = data.map(oldObj => oldObj.id !== obj.id ? oldObj : obj)
     data = JSON.stringify(data);
     localStorage.setItem(key, data);
 }

@@ -1,14 +1,46 @@
 import { useState, useEffect } from 'react';
+import rand from '../../Functions/RandNumber'
 
 function Edit({ modalData, setModalData, editData}) {
 
     const [condition, setCondition] = useState("new");
     const [id, setId] = useState(1);
     const [regCode, setRegCode] = useState('A' + rand(1000000, 9999999));
-    const [km, setKm] = useState('');
+    const [km, setKm] = useState(0);
     const [date, setDate] = useState('null');
 
+    const [km2, setKm2] = useState(0);
 
+
+    useEffect(() => {
+        if(modalData === null) {
+            return;
+        }
+
+        setCondition(modalData.condition);
+        setId(modalData.id);
+        setRegCode(modalData.regCode);
+        
+
+        setKm(modalData.km);
+
+        setKm2(0)
+        setDate(modalData.date)
+
+
+    }, [modalData]);
+
+
+    const handleEdit = () => {
+        const data = {id, regCode, condition, km: (+(modalData.km) + +(km2)), date}
+
+        editData(data)
+        setModalData(null);
+    }
+
+    if (modalData === null) {
+        return null;
+    }
 
     return(
         <>
@@ -36,7 +68,9 @@ function Edit({ modalData, setModalData, editData}) {
                         <div className='form-group'>
                             <label>New or Used</label>
                             <select value={condition} onChange={e => setCondition(e.target.value)}>
-                            <option value="new">New</option>
+                            {
+                                condition === 'new' && <option value="new">New</option>
+                            }
                             <option value="used">Used</option>
                             </select>
                         </div>
@@ -45,32 +79,24 @@ function Edit({ modalData, setModalData, editData}) {
                             condition === 'used' && (
                                 <div>
                                     <div className='form-group'>
-                                        <div>
-                                            {
-                                                date !== null && (
-                                                    <div>
-                                                        <label>Last time used</label>
-                                                        <input type="date">Kada paskutini karta naudotas neredaguotina</input>
-                                                    </div>
-                                                )
-                                            }
-                                        </div>
-                                        <label>Change last time used</label>
-                                        <input type="date" value={date} onChange={e => setDate(e.target.value)}></input>
-                                    </div>
-                                    <div className='form-group'>
                                         <label>Run before (km)</label>
-                                        <input type="number">Kiek vaziaves pries tai neredaguotina{km}</input>
+                                        <div>{km} km</div>
                                         <label>Run today (km)</label>
-                                        <input type="number" value={km} onChange={e => setKm(e.target.value)}></input>
+                                        <input type="number" value={km2} onChange={e => setKm2(e.target.value)}></input>
                                     </div>
                             </div>
                             )
                             }
                         </div>
                         <div className='form-group'>
-                            <button type='checkbox'>Free</button>
-                            <button type='checkbox'>Busy</button>
+                            <fieldset>
+                            <input type="checkbox"></input><span>Busy</span>
+                            <input type="checkbox"></input><span>Free</span>
+                            </fieldset>
+                        </div>
+                        <div className='modal-footer'>
+                            <button type='button' onClick={() => setModalData(null)}>Close</button>
+                            <button type='button' onClick={handleEdit}>Save changes</button>
                         </div>
                     </div>
                 </div>
