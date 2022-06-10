@@ -11,7 +11,7 @@ function Edit({ modalData, setModalData, editData}) {
 
     
     /// data constants
-    const [condition, setCondition] = useState("new");
+    const [condition, setCondition] = useState("New");
 
     const [id, setId] = useState(1);
 
@@ -71,66 +71,65 @@ function Edit({ modalData, setModalData, editData}) {
         <div className="modal">
             <div className="modal-box">
                 <div className="modal-content">
+                    <button type="button" className="close-button" onClick={() => setModalData(null)}>
+                        <span>x</span>
+                    </button>
                     <div className="modal-header">
-                        <h5 className="modal-title">Faults edit</h5>
-                        <button type="button" className="close-button" onClick={() => setModalData(null)}>
-                            <span>&times;</span>
-                        </button>
+                        <h4 className="modal-title">Faults edit</h4>
                     </div>
 
                     <div className="modal-body">
                         <div className="modal-id">
-                            <label>ID</label>
+                            <label>ID:</label>
                             <div>{id}</div>
-                            <small>Id</small>
                         </div>
                         <div className="modal-reg">
-                            <label>Registration Code</label>
+                            <label>Reg Code:</label>
                             <div>{regCode}</div>
-                            <small>Registration Code</small>
                         </div>
-                        <div className='form-group'>
+                        <div className='modal-group'>
                             <label>New or Used</label>
                             <select value={condition} onChange={e => setCondition(e.target.value)}>
                             {
                                 condition === 'new' && <option value="new">New</option>
                             }
-                            <option value="used">Used</option>
+                            <option value="Used">Used</option>
                             </select>
                         </div>
                         <div>
                             {
-                            condition === 'used' && (
-                                <div>
-                                    <div className='form-group'>
+                            condition === 'Used' && (
+                                <div className='hidden-group'>
+                                    <div className='modal-group'>
                                         <label>Run before (km)</label>
-                                        <div>{km} km</div>
+                                        <div><b>{km} km</b></div>
                                         <label>Run today (km)</label>
                                         <input type="number" value={km2} onChange={e => setKm2(e.target.value)}></input>
                                     </div>
-                                    <div className='form-group'>
-                                        <div>
+                                    <div className='modal-group'>
+                                        <div className='modal-date'>
                                             <label>Last time used</label>
-                                            <input type="date" readOnly value={date}></input>
+                                            <input style={{marginLeft: '4px'}} type="date" readOnly value={date}></input>
                                         </div>
-                                        <div>
+                                        <div className='modal-date'>
                                             <label>New date entry</label>
                                             <input type="date" value={newDate} onChange={e => setNewDate(e.target.value)}></input>
                                         </div>
                                     </div>
-                                    <div className='form-group'>
-                                        <fieldset>
-                                        <input type="checkbox" onChange={() => setBusy(busy ? 0 : 1)} checked={busy ? 1 : 0}></input><span>Busy</span>
-                                    </fieldset>
-                        </div>
+                                    <div className='checkbox'>
+                                        
+                                        <input type="checkbox" onChange={() => setBusy(busy ? 0 : 1)} checked={busy ? 1 : 0}></input>
+                                        <b>Busy</b>
+                                    
+                                    </div>
                             </div>
                             )
                             }
                         </div>
 
                         <div className='modal-footer'>
-                            <button type='button' onClick={() => setModalData(null)}>Close</button>
-                            <button type='button' onClick={handleEdit}>Save changes</button>
+                            <button type='button' className='button' onClick={() => setModalData(null)}>Close</button>
+                            <button type='button' className='button' onClick={handleEdit}>Save changes</button>
                         </div>
                     </div>
                 </div>

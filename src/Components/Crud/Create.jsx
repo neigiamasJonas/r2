@@ -7,7 +7,7 @@ import rand from '../../Functions/RandNumber'
 function Create( {setCreateData} ) {
 
 
-    const [condition, setCondition] = useState("new");
+    const [condition, setCondition] = useState("New");
 
     // data values states
     const [id, setId] = useState(1);
@@ -27,7 +27,7 @@ function Create( {setCreateData} ) {
       
   
       setRegCode('A' + rand(1000000, 9999999));
-      setCondition('new');
+      setCondition('New');
       setKm(null);
       setId(k => k + k.length)
       
@@ -64,33 +64,40 @@ function Create( {setCreateData} ) {
               <h3>Create New Item</h3>
             </div>
             <div className='card-body'>
-              <div className='form-group'>
-                <label>ID</label>
-                <input type="text" readOnly value={id} />
-                <small>Auto generated</small>
+              <div className='form-group-row'>
+                <div className='form-group'>
+                  <label>ID</label>
+                  <input type="text" readOnly value={id} />
+                  <small>Auto generated</small>
+                </div>
+                <div className='form-group'>
+                  <label>Registration Code</label>
+                  <input type="text" readOnly value={regCode} onChange={e => setRegCode(e.target.value)}/>
+                  <small>Auto generated</small>
+                </div>
               </div>
-              <div className='form-group'>
-                <label>Registration Code</label>
-                <input type="text" readOnly value={regCode} onChange={e => setRegCode(e.target.value)}/>
-                <small>Auto generated</small>
-              </div>
-              <div className='form-group'>
-                <label>New or Used</label>
-                <select value={condition} onChange={e => setCondition(e.target.value)}>
-                  <option value="new">New</option>
-                  <option value="used">Used</option>
-                </select>
-              </div>
-              <div>
-                {
-                  condition === 'used' && (
-                    <div className='form-group'>
-                    <label>Run before (km)</label>
-                    <input type="number" value={km} onChange={e => setKm(e.target.value)}></input>
+              <div div className='form-group-row'>
+                <div className='form-group'>
+                  <div className='show-group-item'>
+                    <label>New or Used</label>
+                    <select value={condition} onChange={e => setCondition(e.target.value)}>
+                      <option value="New">New</option>
+                      <option value="Used">Used</option>
+                    </select>
                   </div>
-                  )
-                }
+                </div>
+                <div className='form-group'>
+                  {
+                    condition === 'Used' && (
+                    <div className='show-group-item' style={{paddingBottom: '17px'}}>
+                      <label>Run before (km)</label>
+                      <input type="number" value={km} onChange={e => setKm(e.target.value)}></input>
+                    </div>
+                    )
+                  }
+                </div>
               </div>
+
               <button className='button' onClick={handleCreate}>Create</button>
 
             </div>

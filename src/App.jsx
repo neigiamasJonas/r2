@@ -91,10 +91,7 @@ function App() {
             <Create setCreateData={setCreateData}></Create>
           </div>
           <div className='row-col2'>
-            <div className='col2 column'>
               <FaultList faults={scooterList} dataDeletionList={setDeleteData} dataModalList={setModalData}></FaultList>
-              
-            </div>
           </div>
         </div>
       </div>
