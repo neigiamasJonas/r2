@@ -91,7 +91,7 @@ function Edit({ modalData, setModalData, editData}) {
                             <label>New or Used</label>
                             <select value={condition} onChange={e => setCondition(e.target.value)}>
                             {
-                                condition === 'new' && <option value="new">New</option>
+                                condition === 'New' && <option value="New">New</option>
                             }
                             <option value="Used">Used</option>
                             </select>
