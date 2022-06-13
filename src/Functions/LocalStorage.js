@@ -75,6 +75,8 @@ export function sort(obj) {
     data = JSON.parse(data);
     data = JSON.stringify(data);
 
-    localStorage.setItem('ScootersSort', obj)
+    localStorage.setItem('ScootersSort', obj);
+
+    return data;
 
 }

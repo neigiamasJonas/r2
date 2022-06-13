@@ -103,7 +103,7 @@ function App() {
           </div>
           <div className='row-col2'>
             <ScootersSort scootersSort={scootersSort} setScootersSort={setScootersSort}></ScootersSort>
-            <FaultList faults={scooterList} dataDeletionList={setDeleteData} dataModalList={setModalData}></FaultList>
+            <FaultList faults={scooterList} dataDeletionList={setDeleteData} dataModalList={setModalData} scootersSort={scootersSort}></FaultList>
           </div>
         </div>
       </div>

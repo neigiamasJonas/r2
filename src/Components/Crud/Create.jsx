@@ -20,7 +20,7 @@ function Create( {setCreateData} ) {
     // handleCreat po mygtuko paspaudimo istume data i paruoshta masyva
 
     const handleCreate = () => {
-      const data = {id, regCode, condition, km, busy: 0, date: ''};
+      const data = {id, regCode, condition, km, busy: 0, newDate: 'Never used before'};
       
       setCreateData(data);                          // uzsetinu data objekta cia, priestai tai buvo daroma App ir naudojamas propsas setCreateData
       // create(data);

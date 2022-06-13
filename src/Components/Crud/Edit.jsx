@@ -20,7 +20,7 @@ function Edit({ modalData, setModalData, editData}) {
     const [km, setKm] = useState(0);
     const [km2, setKm2] = useState(0);
 
-    const [date, setDate] = useState('null');
+    const [date, setDate] = useState('0');
     const [newDate, setNewDate] = useState(data);
 
     
