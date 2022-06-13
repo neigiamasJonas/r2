@@ -3,6 +3,8 @@ import './App.scss';
 import Create from './Components/Crud/Create';
 import Edit from './Components/Crud/Edit';
 import FaultList from './Components/Crud/List';
+import ScootersInfo from './Components/Crud/ScootersInfo';
+import ScootersSort from './Components/Crud/ScootersSort';
 import { create, edit, read, remove } from './Functions/LocalStorage';
 
 
@@ -12,6 +14,7 @@ function App() {
   const [createData, setCreateData] = useState(null);
   const [editData, setEditData] = useState(null);
   const [modalData, setModalData] = useState(null);
+  const [scootersSort, setScootersSort] = useState('1');
 
   // last update component (paskutinio localStorage update laikas), kad atsinaujintu ne po refresh
   const [lastUpdate, setLastUpdate] = useState(Date.now());
@@ -66,7 +69,6 @@ function App() {
   ////////////////
   // EDIT //
 
-
   useEffect (() => {
 
     if (editData === null) {
@@ -80,6 +82,14 @@ function App() {
   }, [editData]);
 
 
+  ////////////////
+  // SORT //
+
+  useEffect(() => {
+    localStorage.getItem('ScootersSort') ? setScootersSort(localStorage.getItem('ScootersSort')) : setScootersSort('1');
+
+    
+  }, [])
 
   return (
     <>
@@ -89,9 +99,11 @@ function App() {
         <div className='row'>
           <div className='row-col1'>
             <Create setCreateData={setCreateData}></Create>
+            <ScootersInfo scooters={scooterList}></ScootersInfo>
           </div>
           <div className='row-col2'>
-              <FaultList faults={scooterList} dataDeletionList={setDeleteData} dataModalList={setModalData}></FaultList>
+            <ScootersSort scootersSort={scootersSort} setScootersSort={setScootersSort}></ScootersSort>
+            <FaultList faults={scooterList} dataDeletionList={setDeleteData} dataModalList={setModalData}></FaultList>
           </div>
         </div>
       </div>

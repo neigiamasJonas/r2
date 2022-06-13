@@ -62,3 +62,19 @@ export function edit(obj) {
     data = JSON.stringify(data);
     localStorage.setItem(key, data);
 }
+
+
+export function sort(obj) {
+
+    let data = localStorage.getItem('ScootersSort')
+
+    if (data === null) {
+        data = JSON.stringify('1')
+    }
+
+    data = JSON.parse(data);
+    data = JSON.stringify(data);
+
+    localStorage.setItem('ScootersSort', obj)
+
+}

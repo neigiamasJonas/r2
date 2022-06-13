@@ -1,6 +1,6 @@
 import Fault from "./Fault";
 
-function FaultList({ faults, dataDeletionList, dataModalList }) {
+function FaultList({ faults, dataDeletionList, dataModalList, scootersSort }) {
 
 
     return (
@@ -13,6 +13,12 @@ function FaultList({ faults, dataDeletionList, dataModalList }) {
                 <ul className="ul">
                     {
                     faults ? faults.map(fault => <Fault key={fault.id} fault={fault} dataDeletion={dataDeletionList} dataEdit={dataModalList}></Fault>) : null
+                    }
+                    {
+                    scootersSort === '2' ? faults.sort((a, b) => (a.km - b.km)).map(fault => <Fault key={fault.id} fault={fault} dataDeletion={dataDeletionList} dataEdit={dataModalList}></Fault>) : null
+                    }
+                    {
+                    scootersSort === '3' && faults.map(fault => <Fault key={fault.id} fault={fault} dataDeletion={dataDeletionList} dataEdit={dataModalList}></Fault>)
                     }
                 </ul>
             </div>

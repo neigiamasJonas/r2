@@ -36,6 +36,7 @@ body {
     flex-direction: column;
     width: 22%;
     min-width: 280px;
+    gap: 20px;
     
 }
 
@@ -80,7 +81,7 @@ body {
     padding: 20px;
     border: 1px solid #777;
     border-top: none;
-    gap: 30px;
+    gap: 10px;
 
     .ul {
         display: flex;
@@ -95,7 +96,7 @@ body {
     display: flex;
     width: 100%;
     flex-direction: column;
-    gap: 7px;
+    gap: 3px;
 
 
     label {
@@ -119,7 +120,7 @@ body {
 .form-group-row {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
 }
 
 .show-group-item {
@@ -385,6 +386,19 @@ body {
         width: 200px;
     }
 }
+
+////////// scooters count
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+
 
 
 

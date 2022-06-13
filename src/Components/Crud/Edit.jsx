@@ -56,12 +56,11 @@ function Edit({ modalData, setModalData, editData}) {
         const data = {id, regCode, condition, km: (+(modalData.km) + +(km2)), date, newDate, busy: busy ? true : false}
 
         editData(data)
-        setModalData(null);
-        
-        
-        
+        setModalData(null);  
     }
 
+
+    
     if (modalData === null) {
         return null;
     }
