@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import rand from '../../Functions/RandNumber'
-// import { create } from '../../Functions/LocalStorage';
+// import rand from '../../Functions/RandNumber'
+import RandomStringID from '../../Functions/RandomStringID';
+
 
 
 
@@ -11,7 +12,7 @@ function Create( {setCreateData} ) {
 
     // data values states
     const [id, setId] = useState(1);
-    const [regCode, setRegCode] = useState('A' + rand(1000000, 9999999));
+    const [regCode, setRegCode] = useState(RandomStringID(8));
     const [km, setKm] = useState(0);
     
   
@@ -26,7 +27,7 @@ function Create( {setCreateData} ) {
       // create(data);
       
   
-      setRegCode('A' + rand(1000000, 9999999));
+      setRegCode(RandomStringID(8));
       setCondition('New');
       setKm(null);
       setId(k => k + k.length)
