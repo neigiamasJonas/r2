@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-// import rand from '../../Functions/RandNumber'
+
 import RandomStringID from '../../Functions/RandomStringID';
 
 
